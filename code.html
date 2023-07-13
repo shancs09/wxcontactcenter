@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CISCO Webex Contact Center-Live Agent</title>
+    <style>
+        /* CSS styles omitted for brevity */
+
+        #ticket-table {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #toggle-tickets {
+            cursor: pointer;
+            color: blue;
+        }
+
+        #toggle-tickets:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function showTicket(id, title, description, label) {
+            // JavaScript code to display the selected ticket (unchanged)
+        }
+
+        function resetForm() {
+            document.getElementById('ticket-form').reset();
+        }
+
+        function toggleTickets() {
+            var table = document.getElementById('ticket-table');
+            table.style.display = table.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>CISCO Webex Contact Center-Live Agent</h1>
+    </div>
+    <div id="left">
+        <form action="/" method="post" id="ticket-form">
+            <textarea name="text" rows="20" cols="80" required></textarea><br><br>
+            <input type="submit" value="Submit" onclick="resetForm()">
+        </form>
+    </div>
+    <div id="right">
+        <h3>Latest Ticket:</h3>
+        <!-- Latest ticket code (unchanged) -->
+    </div>
+    <div id="bottom">
+        <h3>
+            <span id="toggle-tickets" onclick="toggleTickets()">All Tickets</span>:
+        </h3>
+        <div id="ticket-table" style="display: none;">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Label</th>
+                    <th>Entities</th>
+                </tr>
+                <!-- Tickets code (unchanged) -->
+            </table>
+        </div>
+        <div id="selected-ticket" style="display: none;">
+            <!-- Selected ticket code (unchanged) -->
+        </div>
+    </div>
+</body>
+</html>

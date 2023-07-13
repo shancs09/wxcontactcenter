@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "title": "Check Account Balance",
+        "description": "Caller wants to check the balance in his account His registered email address is alex@examplecom The account balance is $1,200 The virtual agent checks his account balance The virtual agent informs him that his account balance is $1,200",
+        "label": "positive",
+        "entities": "\n1. registered email address: alex@example.com \n2. account balance: $1,200",
+        "email": "alex@example.com",
+        "recording":"cos://jp-tok/cloud-object-storage-cos-audiofiles/Transcript%203_Check%20Account%20Balance.wav"
+    },
+    {
+        "id": 2,
+        "title": "Create Account",
+        "description": "Caller wants to create an account with the virtual agent's bank He provides his full name, date of birth, and email address He creates a username and password for his account The account is successfully created The virtual agent informs him to log in using his username and password",
+        "label": "positive",
+        "entities": "\n1. full name: Alex Smith \n2. date of birth: September 10, 1985 \n3. email address: alex@example.com \n4. username: alexsmith85 \n5. password: Secure123",
+        "email": "alex@example.com",
+        "recording":"cos://jp-tok/cloud-object-storage-cos-audiofiles/Transcript%202_Create%20Account.wav"
+    },
+    {
+        "id": 3,
+        "title": "Apply for Credit Card",
+        "description": "Caller wants to apply for a credit card Virtual agent asks for his full name, date of birth, and email address Caller provides his address and annual income Virtual agent submits the application Caller will be notified via email regarding the status of his application",
+        "label": "positive",
+        "entities": "\n1. full name: Alex Smith \n2. date of birth: September 10, 1985 \n3. email address: alex@example.com \n4. current residential address: 123 Main Street, Cityville \n5. annual income: $60,000",
+        "email": "alex@example.com",
+        "recording":"cos://jp-tok/cloud-object-storage-cos-audiofiles/Transcript%201_Apply%20for%20Credit%20Card.wav"
+    }
+]

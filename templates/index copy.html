@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IBM Contact Center : Live Agent</title>
+    <style>
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+        #left {
+            float: left;
+            width: 40%;
+            padding: 20px;
+        }
+
+        #right {
+            float: left;
+            width: 40%;
+            padding: 20px;
+        }
+
+        #bottom {
+            clear: both;
+            padding: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        body {
+            background-image: url(background.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+    </style>
+    <script>
+        function showTicket(id, title, description, label) {
+            document.getElementById('ticket-id').textContent = "ID: " + id;
+            document.getElementById('ticket-title').textContent = "Title: " + title;
+            document.getElementById('ticket-description').textContent = "Description: " + description;
+            document.getElementById('ticket-label').textContent = "Label: " + label;
+            document.getElementById('selected-ticket').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>IBM Contact Center: Live Agent</h1>
+    </div>
+    <!-- <div></div>
+    <div id="audio-player">
+        <audio controls>
+             <source src="output_0.wav" type="audio/wav"> 
+            <source src="output_0.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div> -->
+    <div id="left">
+        <form action="/" method="post">
+            <textarea name="text" rows="20" cols="80" required>{{ submitted_text }}</textarea><br><br>
+            <input type="submit" value="Submit">
+            <button type="button" onclick="clearTextArea()">Clear</button>
+        </form>
+    </div>
+    <div id="right">
+        <h3>Latest Ticket:</h3>
+        {% if tickets %}
+            <p><strong>ID:</strong> {{ tickets[-1].id }}</p>
+            <p><strong>Classification:</strong> {{ tickets[-1].title }}</p>
+            <p><strong>Summary:</strong> {{ tickets[-1].description }}</p>
+            <p><strong>Sentiment:</strong> {{ tickets[-1].label }}</p>
+            <p><strong>Entities:</strong></p>{% set entities_list = tickets[-1].entities.split('\n') %}
+            {% for entity in entities_list %}
+                <p>{{ entity }}</p>
+            {% endfor %}
+        {% else %}
+            <p>No tickets yet.</p>
+        {% endif %}
+    </div>
+    <div id="bottom">
+        <h3>All Tickets:</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Classification</th>
+                <th>Summary</th>
+                <th>Sentiment</th>
+                <th>Entities</th>
+            </tr>
+            {% for ticket in tickets %}
+                <tr>
+                    <td><a href="#" onclick="showTicket('{{ ticket.id }}', '{{ ticket.title }}', '{{ ticket.description }}', '{{ ticket.label }}','{{ ticket.entities}}')">{{ ticket.id }}</a></td>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.label }}</td>
+                    <td>
+                        {% set entities_list = ticket.entities.split('\n') %}
+                        {% for entity in entities_list %}
+                            <p>{{ entity }}</p>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div id="selected-ticket" style="display: none;">
+            <h3>Selected Ticket:</h3>
+            <p id="ticket-id"></p>
+            <p id="ticket-title"></p>
+            <p id="ticket-description"></p>
+            <p id="ticket-label"></p>
+            <p id="ticket-entities"></p>
+        </div>
+    </div>
+</body>
+</html>
